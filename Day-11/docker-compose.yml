@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - /home/bijehn/devops/Day-11/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - app-network
+
+  app:
+    image: python:3.9-slim
+    command: python -m http.server 5000
+    volumes:
+      - app-data:/data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  app-data:
