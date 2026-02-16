@@ -1,0 +1,21 @@
+---
+# tasks file for the-role
+- name: updating the package
+  apt:
+    update_cache: yes
+
+- name: dynamic package
+  apt:
+    name: "{{ package_name }}"
+    state: present
+
+- name: starting dynamic package
+  service:
+    name: "{{package_name}}"
+    state: started
+
+- name: installing nginx
+  apt:
+    name: nginx
+    state: latest
+  notify: restart nginx

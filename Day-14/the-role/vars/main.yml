@@ -1,0 +1,3 @@
+---
+# vars file for the-role
+package_name: lighttpd
